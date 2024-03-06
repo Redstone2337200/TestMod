@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "key": {
+      "#": {
+        "item": "testmod:test_item"
+      },
+      "A": {
+        "item": "minecraft:stick"
+      }
+    },
+    "pattern": [
+      " # ",
+      " # ",
+      " A "
+    ],
+    "result": {
+      "item": "testmod:test_sword",
+      "count": 1
+    }
+  }
