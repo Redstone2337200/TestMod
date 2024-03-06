@@ -1,0 +1,11 @@
+{
+    "item.testmod.test_item": "测试物品",
+    "item.testmod.test_block": "测试方块",
+    "block.testmod.test_block": "测试方块",
+    "item.testmod.test_helmts": "测试头盔",
+    "item.testmod.test_chestplates": "测试胸甲",
+    "item.testmod.test_leggings": "测试护腿",
+    "item.testmod.test_boots": "测试靴子",
+    "item.testmod.test_sword": "测试剑",
+    "itemGroup.testmod.item_group": "示例模组"
+}
