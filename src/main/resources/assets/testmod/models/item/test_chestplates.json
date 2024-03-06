@@ -1,0 +1,6 @@
+{
+    "parent": "item/generted",
+    "textures": {
+        "layer0": "testmod:item/test_chestplates"
+    }
+}
