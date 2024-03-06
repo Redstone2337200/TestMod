@@ -55,6 +55,12 @@ public class TestMod implements ModInitializer {
 	private static final Item TEST_SWORD = Registry.register(Registries.ITEM, new Identifier("testmod", "test_sword"),
 			new SwordItem(TestToolMaterial.TEST, 4, 0F, new FabricItemSettings()));
 
+	private static final TestModEnchantment TEST_MOD_ENCHANTMENT = 
+	    Registry.register(Registries.ENCHANTMENT,new Identifier("textmod","test_mod"),
+		    new TestModEnchantment(Enchanment.Rarity.VERY_RARE,EnchanmentTarget.WEAPON,EquipmentSlot[]{
+				EquipmentSlot.MAINHARD
+			}));
+
 	@SuppressWarnings("unused")
 	private static final ItemGroup ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
 			new Identifier("testmod", "item_group"),

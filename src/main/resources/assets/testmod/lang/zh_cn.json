@@ -7,5 +7,6 @@
     "item.testmod.test_leggings": "测试护腿",
     "item.testmod.test_boots": "测试靴子",
     "item.testmod.test_sword": "测试剑",
+    "enchantment.testmod.test_mod": "测试附魔",
     "itemGroup.testmod.item_group": "示例模组"
 }

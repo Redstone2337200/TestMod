@@ -14,7 +14,11 @@ public class TestModEnchantment extends Enchantment{
     
     @Override
     public void onTargetDamaged(LivingEntity user, Entity target, int level) {
-        // super.onTargetDamaged(user, target, level);
-        
+        if(target instanceof LivingEntity) {
+                ((LivingEntity) target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 2 * level, level - 1));
+            }
+        }
+
+        super.onTargetDamaged(user, target, level);
     }
 }
