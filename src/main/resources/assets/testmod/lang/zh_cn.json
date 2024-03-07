@@ -2,6 +2,8 @@
     "item.testmod.test_item": "测试物品",
     "item.testmod.test_block": "测试方块",
     "block.testmod.test_block": "测试方块",
+    "block.testmod.test_ore": "测试矿石",
+    "block.testmod.deepslate_test_ore": "测试深层矿石",
     "item.testmod.test_helmts": "测试头盔",
     "item.testmod.test_chestplates": "测试胸甲",
     "item.testmod.test_leggings": "测试护腿",
