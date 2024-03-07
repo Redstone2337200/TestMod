@@ -5,7 +5,14 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.ExperienceDroppingBlock;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.enums.Instrument;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -15,14 +22,18 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.redstone233.test.mod.armor.TestArmorMaterial;
 import com.redstone233.test.mod.block.TestBlock;
+import com.redstone233.test.mod.enchantment.TestModEnchantment;
 import com.redstone233.test.mod.item.TestItem;
 import com.redstone233.test.mod.tool.TestToolMaterial;
 
@@ -55,6 +66,28 @@ public class TestMod implements ModInitializer {
 	private static final Item TEST_SWORD = Registry.register(Registries.ITEM, new Identifier("testmod", "test_sword"),
 			new SwordItem(TestToolMaterial.TEST, 4, 0F, new FabricItemSettings()));
 
+	private static final Block TEST_ORE = Registry.register(Registries.BLOCK,
+			new Identifier("testmod", "test_ore"),
+			new ExperienceDroppingBlock(UniformIntProvider.create(10, 17),
+					AbstractBlock.Settings.create().mapColor(MapColor.STONE_GRAY)
+							.instrument(Instrument.BASEDRUM).requiresTool().strength(3.0f, 3.0f)
+							.sounds(BlockSoundGroup.NETHER_ORE)));
+
+	private static final Block DEEPSLATE_TEST_ORE = Registry.register(Registries.BLOCK,
+			new Identifier("testmod", "deepslate_test_ore"),
+			new ExperienceDroppingBlock(UniformIntProvider.create(10, 17),
+					AbstractBlock.Settings.copy(TEST_ORE).mapColor(MapColor.STONE_GRAY)
+							.instrument(Instrument.BASEDRUM).requiresTool().strength(5.0f, 3.0f)
+							.sounds(BlockSoundGroup.DEEPSLATE)));
+
+	@SuppressWarnings("unused")
+	private static final TestModEnchantment TEST_MOD_ENCHANTMENT = Registry.register(Registries.ENCHANTMENT,
+			new Identifier("testmod", "test_mod_enchantments"),
+			new TestModEnchantment(Enchantment.Rarity.VERY_RARE, EnchantmentTarget.WEAPON, new EquipmentSlot[] {
+					EquipmentSlot.MAINHAND,
+					EquipmentSlot.OFFHAND
+			}));
+
 	@SuppressWarnings("unused")
 	private static final ItemGroup ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
 			new Identifier("testmod", "item_group"),
@@ -69,6 +102,8 @@ public class TestMod implements ModInitializer {
 						entries.add(TEST_LEGGINGS);
 						entries.add(TEST_BOOTS);
 						entries.add(TEST_SWORD);
+						entries.add(TEST_ORE);
+						entries.add(DEEPSLATE_TEST_ORE);
 					})
 					.build());
 
@@ -78,11 +113,11 @@ public class TestMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		LOGGER.info("Hello Fabric world!");
-		CommandRegistrationCallback.EVENT.register((dispatcher,registryAccess,enviroment) -> register(dispatcher));
+		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, enviroment) -> register(dispatcher));
 	}
-	
+
 	private Object register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		throw new UnsupportedOperationException("Unimplemented method 'register'");
 	}
-	
+
 }

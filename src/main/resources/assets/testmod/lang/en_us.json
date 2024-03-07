@@ -7,5 +7,6 @@
     "item.testmod.test_leggings": "Test Leggings",
     "item.testmod.test_boots": "Test Boots",
     "item.testmod.test_sword": "Test Sword",
+    "enchantment.testmod.test_mod_enchantments": "Test Mod",
     "itemGroup.testmod.item_group": "Test Mod"
 }
