@@ -3,13 +3,13 @@
 	"id": "testmod",
 	"version": "${version}",
 	"name": "TestMod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Welcome to this template module. This is an open source template that can be downloaded from the source code and changed.",
 	"authors": [
-		"Me!"
+		"Redstone233"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://Redstone2337200.github.io",
+		"sources": "https://github.com/Redstone2337200/testmod/"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/testmod/icon.png",
