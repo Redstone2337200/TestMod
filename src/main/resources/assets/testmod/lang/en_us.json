@@ -10,5 +10,17 @@
     "item.testmod.test_boots": "Test Boots",
     "item.testmod.test_sword": "Test Sword",
     "enchantment.testmod.test_mod_enchantments": "Test Mod",
+    "effect.testmod.xp_effect": "Test Effect",
+    "item.minecraft.potion.effect.test_potion": "Test Potion",
+    "item.minecraft.splash_potion.effect.test_potion": "Splash Test Potion",
+    "item.minecraft.lingering_potion.effect.test_potion": "Lingering Test Potion",
+    "commands.math.trip.success": "This math command to run success!",
+    "commands.math.defa.success": "This math command to run success!",
+    "commands.info.text.success": "This info command to run success!",
+    "commands.info.book.success": "This info command to run success!",
+    "commands.info.book.fail": "This info command running faild!",
+    "commands.info.text.fail": "This info command running faild!",
+    "commands.math.defa.fail": "This math command running faild!",
+    "commands.math.trip.fail": "This math command running faild!",
     "itemGroup.testmod.item_group": "Test Mod"
 }

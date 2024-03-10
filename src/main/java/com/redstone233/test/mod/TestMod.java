@@ -17,6 +17,8 @@ import net.minecraft.block.enums.Instrument;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
@@ -26,9 +28,9 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
+import net.minecraft.potion.Potion;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -37,9 +39,11 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mojang.brigadier.CommandDispatcher;
 import com.redstone233.test.mod.armor.TestArmorMaterial;
 import com.redstone233.test.mod.block.TestBlock;
+import com.redstone233.test.mod.command.TestModCommands;
+import com.redstone233.test.mod.effects.TestEffect;
+import com.redstone233.test.mod.effects.TestPotion;
 import com.redstone233.test.mod.enchantment.TestModEnchantment;
 import com.redstone233.test.mod.fluid.TestWaterFluid;
 import com.redstone233.test.mod.item.TestItem;
@@ -96,21 +100,26 @@ public class TestMod implements ModInitializer {
 					EquipmentSlot.OFFHAND
 			}));
 
-	public static final FlowableFluid STILL_TEST_WATER = 
-		Registry.register(Registries.FLUID, new Identifier("testmod", "test_water"),
+	public static final FlowableFluid STILL_TEST_WATER = Registry.register(Registries.FLUID,
+			new Identifier("testmod", "test_water"),
 			new TestWaterFluid.Still());
-			
-	public static final FlowableFluid FLOWABLE_TEST_WATER = 
-		Registry.register(Registries.FLUID, new Identifier("testmod", "flowing_test_water"), 
+
+	public static final FlowableFluid FLOWABLE_TEST_WATER = Registry.register(Registries.FLUID,
+			new Identifier("testmod", "flowing_test_water"),
 			new TestWaterFluid.Flowing());
-			
-	public static final Item TEST_WATER_BUCKET =
-		Registry.register(Registries.ITEM, new Identifier("testmod", "test_water_bucket"), 
+
+	public static final Item TEST_WATER_BUCKET = Registry.register(Registries.ITEM,
+			new Identifier("testmod", "test_water_bucket"),
 			new BucketItem(STILL_TEST_WATER, new FabricItemSettings().recipeRemainder(Items.BUCKET).maxCount(1)));
 
 	public static final Block TEST_WATER = 
-		Registry.register(Registries.BLOCK, new Identifier("testmod","test_water"), 
+		Registry.register(Registries.BLOCK,new Identifier("testmod", "test_water"),
 			new FluidBlock(STILL_TEST_WATER, FabricBlockSettings.copy(Blocks.WATER)));
+
+	public static final StatusEffect TEST_EFFECT = new TestEffect();
+
+	public static final TestPotion XP_EFFECT = new TestPotion();
+	public static final Potion XP_POTION = new Potion(new StatusEffectInstance(TestMod.XP_EFFECT));
 
 	@SuppressWarnings("unused")
 	private static final ItemGroup ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -137,18 +146,19 @@ public class TestMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		LOGGER.info("Hello Fabric world!");
-		FluidRenderHandlerRegistry.INSTANCE.register(STILL_TEST_WATER,FLOWABLE_TEST_WATER,
-			new SimpleFluidRenderHandler(
-				new Identifier("minecraft:block/water_still"), 
-				new Identifier("minecraft:block/water_flow"),
-					0x730D95
-				));
+		FluidRenderHandlerRegistry.INSTANCE.register(STILL_TEST_WATER, FLOWABLE_TEST_WATER,
+				new SimpleFluidRenderHandler(
+						new Identifier("minecraft:block/water_still"),
+						new Identifier("minecraft:block/water_flow"),
+						0x730D95));
 
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, enviroment) -> register(dispatcher));
-	}
-
-	private Object register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		return dispatcher;
+		CommandRegistrationCallback.EVENT
+			.register((dispatcher, registryAccess, environment) -> TestModCommands.register(dispatcher)
+		);
+		
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("testmod", "test_effect"), TEST_EFFECT);
+		Registry.register(Registries.STATUS_EFFECT, new Identifier("testmod", "xp_potion"), XP_EFFECT);
+		Registry.register(Registries.POTION, new Identifier("testmod", "xp_potion"), XP_POTION);
 	}
 
 }

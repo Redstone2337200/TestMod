@@ -3,7 +3,8 @@
 	"package": "com.redstone233.test.mod.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+		"BrewingMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

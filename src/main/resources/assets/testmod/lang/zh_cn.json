@@ -10,5 +10,17 @@
     "item.testmod.test_boots": "测试靴子",
     "item.testmod.test_sword": "测试剑",
     "enchantment.testmod.test_mod_enchantments": "测试附魔",
+    "effect.testmod.xp_effect": "测试效果",
+    "item.minecraft.potion.effect.test_potion": "测试药水",
+    "item.minecraft.splash_potion.effect.test_potion": "喷溅型测试药水",
+    "item.minecraft.lingering_potion.effect.test_potion": "滞留型测试药水",
+    "commands.math.trip.success": "命令Math执行成功，%s！",
+    "commands.math.defa.success": "命令Math执行成功，%s！",
+    "commands.info.text.success": "命令Info执行成功，%s！",
+    "commands.info.book.success": "命令Info执行成功，%s！",
+    "commands.info.book.fail": "命令Info执行失败，%s！",
+    "commands.info.text.fail": "命令Info执行失败，%s！",
+    "commands.math.defa.fail": "命令Math执行失败，%s！",
+    "commands.math.trip.fail": "命令Math执行失败，%s！",
     "itemGroup.testmod.item_group": "示例模组"
 }
